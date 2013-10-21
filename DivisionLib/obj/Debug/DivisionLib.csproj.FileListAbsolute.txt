@@ -1,0 +1,14 @@
+E:\feng\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.dll
+E:\feng\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.pdb
+E:\feng\CellDivision\CellDiv\DivisionLib\bin\Debug\Meta.Numerics.dll
+E:\feng\CellDivision\CellDiv\DivisionLib\obj\Debug\ResolveAssemblyReference.cache
+E:\feng\CellDivision\CellDiv\DivisionLib\obj\Debug\DivisionLib.dll
+E:\feng\CellDivision\CellDiv\DivisionLib\obj\Debug\DivisionLib.pdb
+E:\feng\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.XML
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.XML
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.dll
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\bin\Debug\DivisionLib.pdb
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\bin\Debug\Meta.Numerics.dll
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\obj\Debug\ResolveAssemblyReference.cache
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\obj\Debug\DivisionLib.dll
+E:\MSI_software\CellDivision\CellDiv\DivisionLib\obj\Debug\DivisionLib.pdb

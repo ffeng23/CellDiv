@@ -1,0 +1,80 @@
+op<-par(mfrow = c(2, 3), # 2 x 2 pictures on one plot
+          pty = "s")       # square plotting region,
+                           # independent of device size
+
+###
+#jpeg("death.jpg")
+xt<-read.table("result.txt", header=T, sep="\t")
+
+#plot(c(0,150),c(0,3000), type="n", main="Total Dead Cell", xlab="time (hrs)", ylab="cell numbers")
+
+plot(xt$ID, xt$alpha,  col=2, main="alpha", type="l")
+#mtext(paste("totle number of cells:", length(xt[,2]), ""));
+
+plot(xt$ID, xt$gamma,  col=2, main="gamma", type="l")
+
+plot(xt$ID, xt$beta,  col=2, main="beta", type="l")
+
+plot(xt$ID, xt$epsilon,  col=2, main="epsilon", type="l")
+
+plot(xt$ID, xt$lamda,  col=2, main="lamda", type="l")
+
+plot(xt$ID, xt$q,  col=2, main="q", type="l")
+
+#plot(xt$ID, xt$logLL, col=2, main="logLL", type="l");
+
+par(op);
+###########for death and live cell
+jpeg("totalCells_withDDestiny.jpg")
+op<-par(mfrow = c(1, 2), # 2 x 2 pictures on one plot
+          pty = "s")       # square plotting region,
+                           # independent of device size
+xt<-read.table("div.txt", header=T, sep="\t")
+xt_orig<-read.table("totalLiveCellsByTime.csv", header=F, sep=",")
+plot(c(0,180),c(0,600), type="n", main="Total Live Cell", xlab="time (hrs)", ylab="cell numbers")
+points(xt$time, xt$live, type="p", col=2)
+points(xt_orig[,1], xt_orig[,2], type="p", col=1)
+
+lines(spline(xt$time, xt$live), type="l", col=3)
+#dev.off();
+xt_orig<-read.table("totalDeadCellsByTime.csv", header=F, sep=",")                        
+
+plot(c(0,180),c(0,1000), type="n", main="Total death Cell", xlab="time (hrs)", ylab="cell numbers")
+points(xt$time, xt$death, type="p", col=1)
+lines(spline(xt$time, xt$death), type="l", col=3)
+points(xt_orig[,1], xt_orig[,2], type="p", col=1)
+
+par(op);
+dev.off();
+
+predict<-100;
+obs<- 82.64202307
+log(1/(sqrt(2*pi)*1))+(-1*(predict-obs)^2/2)
+
+
+jpeg("CellsByGen_withoutDDestiny.jpg")
+xt<-read.table("divByGen.txt", header=T, sep="\t")
+plot(c(0,150), c(0,550), type="p", main="by Generation", xlab="time", ylab="cell count")
+lines(spline(xt[,1], xt[,2]), pch=1, col=2)
+lines(spline(xt[,1], xt[,3]), pch=2, col=3)
+lines(spline(xt[,1], xt[,4]), pch=3, col=4)
+lines(spline(xt[,1], xt[,5]), pch=4, col=5)
+lines(spline(xt[,1], xt[,6]), pch=5, col=6)
+lines(spline(xt[,1], xt[,7]), pch=6, col=7)
+lines(spline(xt[,1], xt[,8]), pch=7, col=8)
+lines(spline(xt[,1], xt[,9]), pch=8, col=9)
+lines(spline(xt[,1], xt[,10]), pch=9, col=10)
+lines(spline(xt[,1], xt[,11]), pch=10, col=11)
+#points(xt[,1], xt[,8], pch=7, col=8)
+
+legend(80,550, c("1", "2", "3", "4", "5" ,"6","7","8"), text.col=c(2,3,4,5,6,7,8,9), lty=1, col= c(2,3,4,5,6,7,8,9),cex=0.7);
+dev.off();
+
+
+plot(c(0,12), c(0, 0.8), main="Progeny Destiny", type="n");
+lines(density(rtnorm(15000, 0, 1.0, 0,15)), col=3)
+lines(density(rtnorm(15000, 1, 1.0, 0,15)), col=4)
+lines(density(rtnorm(15000, 2.5, 1.0, 0,15)), col=5)
+lines(density(rtnorm(15000, 4.5, 1.0, 0,15)), col=6)
+lines(density(rtnorm(15000, 8.5, 1.0, 0,15)), col=8)
+legend(4,0.8, c("tnorm(0, 1)", "tnorm(1, 1)", "tnorm(2.5, 1)", "tnorm(4.5, 1)", "tnorm(8.5, 1)"), text.col=c(3,4,5,6,8), lty=1, col= c(3,4,5,6,8));

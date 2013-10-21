@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DivisionLib</name>
+    </assembly>
+    <members>
+        <member name="M:DivisionLib.TruncatedNormal.#ctor(System.Double,System.Double)">
+            <summary>
+            Generate standard truncated normal distributions, using accept and rejected method
+            so, using the inefficient algorith, simply draw samples from Normal distribution and
+            then accept it if it is "[leftBound, rightbound]"
+            </summary>
+        </member>
+        <member name="M:DivisionLib.TruncatedNormal.#ctor(System.Double,System.Double,System.Double,System.Double)">
+             <summary>
+            Generate truncated normal distributions, using accept and rejected method
+             so, using the inefficient algorith, simply draw samples from Normal distribution and
+             then accept it if it is "[leftBound, rightbound]"
+             </summary>
+             <param name="leftBound">lower limit of the range</param>
+             <param name="rightBound">upper limit of the range</param>
+        </member>
+        <member name="T:DivisionLib.TwoFactorModel">
+            <summary>
+            This is the two minimum factor model describing the cell division with the
+            emphasis on the correlation between generations
+            See reference Markham JF, 2010 J R Soc Interface 7,1049.
+            To summarize this model,
+            1)the cell decide the fate (divide or not at the beginning or right after the division)
+            2)then at the time of division/death to divide/die
+            </summary>
+        </member>
+        <member name="T:DivisionLib.DivisionModel">
+            <summary>
+            the interface of the division model. 
+            </summary>
+            
+        </member>
+        <member name="M:DivisionLib.DivisionModel.#ctor(System.Single)">
+            <summary>
+            Constructor, this is the one used to build the founder cells.
+            </summary>
+            <param name="signal">the input used to indicate the activation level. It has values between 0 and 1. 
+            For now, only takes 1 as activated with CpG and the cell is undergoing division. Will do more for later. </param>
+        </member>
+        <member name="M:DivisionLib.DivisionModel.#ctor(DivisionLib.DivisionModel)">
+            <summary>
+            Constructor, this is the one used to build all the daughter cells.  
+            </summary>
+            <param name="_m">the Division model/machine from its mother cell. </param>
+        </member>
+        <member name="M:DivisionLib.DivisionModel.Step(System.Double)">
+             <summary>
+             the function to run one step of the model to evaluate the whether the cell to divide/die/keep running
+             </summary>
+             <param name="time">the time step to run at</param>
+            
+             <returns>an integer to indicate wheter the cell to divide (1), die(-1) or keep going(0)</returns>
+        </member>
+        <member name="M:DivisionLib.DivisionModel.Regenerate">
+            <summary>
+            the method used to reset the values of current model for reusing the current object for the daughter cell.
+            </summary>
+        </member>
+        <member name="F:DivisionLib.DivisionModel.divisionNum">
+            <summary>
+            division number
+            </summary>
+        </member>
+        <member name="F:DivisionLib.DivisionModel.tLastDivision">
+            <summary>
+            time of the last division
+            </summary>
+        </member>
+        <member name="F:DivisionLib.DivisionModel.tDivision">
+            <summary>
+            time to division
+            </summary>
+        </member>
+        <member name="F:DivisionLib.DivisionModel.tDeath">
+            <summary>
+            time to death
+            </summary>
+        </member>
+        <member name="F:DivisionLib.DivisionModel.fate">
+            <summary>
+            fate of the current cell
+            </summary>
+        </member>
+        <member name="P:DivisionLib.DivisionModel.TLastDivision">
+            <summary>
+            Property to return time of the last division
+            </summary>
+        </member>
+        <member name="P:DivisionLib.DivisionModel.DivisionNum">
+            <summary>
+            Property to return division number of current model/cell
+            </summary>
+        </member>
+        <member name="P:DivisionLib.DivisionModel.TDivision">
+            <summary>
+            Property to return the division time of the current model
+            </summary>
+        </member>
+        <member name="P:DivisionLib.DivisionModel.TDeath">
+            <summary>
+            Property to return the death time of the current model
+            </summary>
+        </member>
+        <member name="P:DivisionLib.DivisionModel.Fate">
+            <summary>
+            Property to return the fate of the current cell, true for division and false for death. 
+            </summary>
+        </member>
+        <member name="M:DivisionLib.TwoFactorModel.#ctor(System.Single)">
+            <summary>
+            Constructor, this is the one used to build the founder cells.
+            </summary>
+            <param name="signal">the input used to indicate the activation level. It has values between 0 and 1. 
+            
+            For now, only takes 1 as activated with CpG and the cell is undergoing division. Will do more for later. </param>
+        </member>
+        <member name="M:DivisionLib.TwoFactorModel.#ctor(DivisionLib.DivisionModel)">
+            <summary>
+            Constructor, this is the one used to build all the daughter cells.  
+            </summary>
+            <param name="m">the Division model/machine from its mother cell. </param>
+        </member>
+        <member name="M:DivisionLib.TwoFactorModel.decideFate">
+            <summary>
+            the method used to decide the fate of the current cell (die or divide). It should called at the time building the cell.
+            </summary>
+        </member>
+        <member name="M:DivisionLib.TwoFactorModel.Step(System.Double)">
+            <summary>
+            the function to run one step of the model to evaluate the whether the cell to divide/die/keep running
+            </summary>
+            <param name="time">the time step to run at</param>
+            
+            <returns>an integer to indicate wheter the cell to divide (1), die(-1) or keep going(0)</returns>
+        </member>
+        <member name="M:DivisionLib.TwoFactorModel.Regenerate">
+            <summary>
+            this is the function to reuse the current division model for division
+            </summary>
+        </member>
+        <member name="M:DivisionLib.DivisionMachine.#ctor">
+            <summary>
+            constructor for building the founder cells withoug passing the founder rm.
+            </summary>
+        </member>
+        <member name="M:DivisionLib.DivisionMachine.#ctor(System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            contructor for building the daughter cells.
+            </summary>
+            <param name="rm">rm from mother cell</param>
+            <param name="rm_d">rm_d from mother cell</param>
+            <param name="tLastDivision">the time of the division for the mother cell.</param>
+        </member>
+        <member name="M:DivisionLib.DivisionMachine.boundingDivisionTime(System.Double)">
+            <summary>
+            to bounding the division time in case of the small or negative r;
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DivisionLib.DeathMachine.#ctor">
+             <summary>
+             Constructors for the founder cells 
+            
+             </summary>
+        </member>
+        <member name="M:DivisionLib.DeathMachine.#ctor(System.Double)">
+            <summary>
+            contructors for the daughter cells
+            </summary>
+            <param name="_tDeath">death time of the mother cell</param>
+        </member>
+        <member name="M:DivisionLib.DeathMachine.Regenerate">
+            <summary>
+            the function to reassign the values of the current object and reuse the object for the daughter cell at the division
+            </summary>
+        </member>
+        <member name="M:DivisionLib.DivisionDestiny.#ctor">
+            <summary>
+            constructor
+            </summary>
+        </member>
+        <member name="M:DivisionLib.DivisionDestiny.getProbability(System.Int32)">
+            <summary>
+            calculate the probability associated with input x
+            </summary>
+            <param name="_x">the input x for probability calculation, x could be any interger, for those are not in the rvX range, return 0</param>
+            <returns></returns>
+        </member>
+        <member name="M:DivisionLib.DivisionDestiny.getNextRandomValue(System.Random)">
+            <summary>
+            the function used to generate the random value folliwing the (discrete normal) distribution
+            </summary>
+            <param name="_rng">random number input, try to follow the meta numeric format</param>
+            <returns></returns>
+        </member>
+        <member name="M:DivisionLib.DivisionDestiny.getNextRandomValudEffective(System.Random,System.Int32)">
+            <summary>
+            this function is based on the getNextRandomValue(), but add another layer of variation to model
+            the correlation among siblings, based on the founders destiny and correlation matrix
+            </summary>
+            <param name="_rng"></param>
+            <param name="_divisionDestiny"></param>
+            <returns></returns>
+        </member>
+        <member name="F:DivisionLib.DivisionDestiny.rvXEffectiveDivisionDiff">
+            this is the array containing the correlation for division destiny among siblings 
+            it mean for siblings die in the same generation, p=0.451
+            for siblings die in adjacent generation, p=0.902-0.451 
+            for otherwise, p=1-aboveP
+        </member>
+        <member name="T:DivisionLib.ODEModel">
+            <summary>
+            public class implementing Differential Equation based cell division model 
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEModel.#ctor(System.Single)">
+            <summary>
+            Constructor, this is the one used to build the founder cells.
+            </summary>
+            <param name="signal">the input used to indicate the activation level. It has values between 0 and 1. 
+            
+            For now, only takes 1 as activated with CpG and the cell is undergoing division. Will do more for later. </param>
+        </member>
+        <member name="M:DivisionLib.ODEModel.#ctor(DivisionLib.DivisionModel)">
+            <summary>
+            Constructor, this is the one used to build all the daughter cells.  
+            </summary>
+            <param name="m">the Division model/machine from its mother cell. </param>
+        </member>
+        <member name="M:DivisionLib.ODEModel.decideFate">
+            <summary>
+            the method used to decide the fate of the current cell (die or divide). It should called at the time building the cell.
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEModel.Step(System.Double)">
+            <summary>
+            the function to run one step of the model to evaluate the whether the cell to divide/die/keep running
+            </summary>
+            <param name="time">the time step to run at</param>
+            
+            <returns>an integer to indicate wheter the cell to divide (1), die(-1) or keep going(0)</returns>
+        </member>
+        <member name="M:DivisionLib.ODEModel.Regenerate">
+            <summary>
+            this is the function to reuse the current division model for division
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEDivisionMachine.#ctor">
+            <summary>
+            constructor for building the founder cells without passing the parameters.
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEDivisionMachine.#ctor(System.Double,System.Double,System.Double,System.Int32,DivisionLib.DivisionDestiny)">
+            <summary>
+            contructor for building the daughter cells.
+            </summary>
+            <param name="_tLastDivision">the relative division time for last generation, this is the divisiton time for its mother since the mother was born</param>
+            <param name="v0Last">the v0(protein controlling the division) concentration at the mother birth time for the mother</param>
+            <param name="_tDivisionTotalLast">the absolution birth time for this daughter cell since system started</param>
+        </member>
+        <member name="M:DivisionLib.ODEDivisionMachine.boundingDivisionTime">
+            <summary>
+            to bounding the division time in case of the small or negative r;
+            </summary>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="F:DivisionLib.ODEDivisionMachine.v0">
+            <summary>
+            the parameter for differential equation model, the initial concentration of v protein controlling the division
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEDeathMachine.#ctor">
+             <summary>
+             Constructors for the founder cells 
+            
+             </summary>
+        </member>
+        <member name="M:DivisionLib.ODEDeathMachine.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            contructors for the daughter cells
+            </summary>
+            <param name="_tLastDivision">the relative time of last division, since the birth of the mother</param>
+            <param name="m0Last">the m (protein controlling the mortality) concentration at the begin of this daughter cell</param>
+            <param name="_tLastDivisionTotal">the total last division time, is the absolute time for the birth of the this daughter cell since the system started</param>
+        </member>
+        <member name="M:DivisionLib.ODEDeathMachine.Regenerate(System.Double)">
+            <summary>
+            the function to reassign the values of the current object and reuse the object for the daughter cell at the division
+            </summary>
+        </member>
+        <member name="M:DivisionLib.ODEModelParameters.resetParameters(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            static method for resetParameters for all the values
+            </summary>
+            <param name="_alphaDivsion"></param>
+            <param name="_gammaDivision"></param>
+            <param name="_epsilonDeath"></param>
+            <param name="_betaDeath"></param>
+            <param name="_m0"></param>
+            <param name="_v0"></param>
+        </member>
+    </members>
+</doc>

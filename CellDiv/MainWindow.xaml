@@ -1,0 +1,42 @@
+﻿<Window x:Class="CellDiv.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cell Division Simulator" Height="562" Width="496">
+    <Grid Height="529" Width="482">
+        <Rectangle Height="101" HorizontalAlignment="Left" Margin="14,30,0,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="445" />
+        <Rectangle Height="124" HorizontalAlignment="Left" Margin="14,142,0,0" Name="rectangle2" Stroke="Black" VerticalAlignment="Top" Width="445" />
+        <Button Content="Run" Height="23" HorizontalAlignment="Left" Margin="332,362,0,0" Name="btnRun" VerticalAlignment="Top" Width="75" Click="btnRun_Click" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="99,54,0,0" Name="txt1DivMean" VerticalAlignment="Top" Width="120" Text="69.679"/>
+        <Label Content="First Division:" Height="26" HorizontalAlignment="Left" Margin="30,30,0,0" Name="label1" VerticalAlignment="Top" Width="142" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="47,54,0,0" Name="label2" VerticalAlignment="Top" Content="Mean" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="299,54,0,0" Name="txt1DivVar" VerticalAlignment="Top" Width="120" Text="0.32923"/>
+        <Label Content="Variance" Height="28" HorizontalAlignment="Left" Margin="247,54,0,0" Name="label3" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,169,263,0" Name="txt2DivMean" VerticalAlignment="Top" Width="120" Text="20" />
+        <Label Content="Mean" Height="28" HorizontalAlignment="Left" Margin="47,169,0,0" Name="label4" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="299,169,0,0" Name="txt2DivVar" VerticalAlignment="Top" Width="120" Text="0.429"/>
+        <Label Content="Variance" Height="28" HorizontalAlignment="Left" Margin="247,169,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Division i&gt;1:" Height="26" HorizontalAlignment="Left" Margin="30,148,0,0" Name="label6" VerticalAlignment="Top" Width="142" />
+        <Rectangle Height="80" HorizontalAlignment="Left" Margin="16,276,0,0" Name="rectangle3" Stroke="Black" VerticalAlignment="Top" Width="443" />
+        <Label Content="Progressor Fraction" Height="28" HorizontalAlignment="Left" Margin="24,280,0,0" Name="label7" VerticalAlignment="Top" Width="104" DataContext="{Binding}" />
+        <Label Content="Parameters" Height="29" HorizontalAlignment="Left" Margin="16,0,0,0" Name="label8" VerticalAlignment="Top" Width="105" FontWeight="Bold" FontSize="16" />
+        <Label Content="Devision Destiny" Height="28" HorizontalAlignment="Left" Margin="166,280,0,0" Name="label9" VerticalAlignment="Top" />
+        <TextBox Height="28" HorizontalAlignment="Left" Margin="219,304,0,0" Name="txtDDMean" VerticalAlignment="Top" Width="65" />
+        <Label Content="D Mean" Height="28" HorizontalAlignment="Left" Margin="166,304,0,0" Name="label10" VerticalAlignment="Top" />
+        <TextBox Height="28" HorizontalAlignment="Left" Margin="354,304,0,0" Name="txtDDVar" VerticalAlignment="Top" Width="65" />
+        <Label Content="D Var" Height="28" HorizontalAlignment="Left" Margin="301,304,0,0" Name="label11" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,102,263,0" Name="txt1DeathMean" VerticalAlignment="Top" Width="120" Text="56.156" />
+        <Label Content="Mean" Height="28" HorizontalAlignment="Left" Margin="47,102,0,0" Name="label12" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="299,102,0,0" Name="txt1DeathVar" VerticalAlignment="Top" Width="120" Text="0.45674"/>
+        <Label Content="Variance" Height="28" HorizontalAlignment="Left" Margin="247,102,0,0" Name="label13" VerticalAlignment="Top" />
+        <Label Content="First Death:" Height="26" HorizontalAlignment="Left" Margin="30,74,0,0" Name="label14" VerticalAlignment="Top" Width="142" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,227,263,0" Name="txt2DeathMean" VerticalAlignment="Top" Width="120" Text="56.156"/>
+        <Label Content="Mean" Height="28" HorizontalAlignment="Left" Margin="47,227,0,0" Name="label15" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="299,227,0,0" Name="txt2DeathVar" VerticalAlignment="Top" Width="120" Text="0.45674"/>
+        <Label Content="Variance" Height="28" HorizontalAlignment="Left" Margin="247,227,0,0" Name="label16" VerticalAlignment="Top" />
+        <Label Content="Death i&gt;1:" Height="26" HorizontalAlignment="Left" Margin="30,206,0,0" Name="label17" VerticalAlignment="Top" Width="142" />
+        <Label Content="Starting Cell #:" Height="28" HorizontalAlignment="Left" Margin="30,362,0,0" Name="label18" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="120,362,0,0" Name="txtFounderCellNum" VerticalAlignment="Top" Width="120" Text="10000" />
+        <TextBox Height="121" HorizontalAlignment="Left" Margin="16,396,0,0" Name="txtLog" VerticalAlignment="Top" Width="443" AcceptsReturn="True" AcceptsTab="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="30,304,0,0" Name="txtPFraction" VerticalAlignment="Top" Width="84" Text="1.0"/>
+    </Grid>
+</Window>

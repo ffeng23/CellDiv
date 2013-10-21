@@ -1,0 +1,45 @@
+op<-par(mfrow = c(3, 1), # 2 x 2 pictures on one plot
+          pty = "m")       # square plotting region,
+                           # independent of device size
+
+###
+xt<-read.table("div.txt", header=T, sep="\t")
+
+plot(c(0,150),c(0,200), type="n", main="Total Live Cell", )
+#lines(xt$time, xt$death, type="l", col=1)
+
+points(xt$time, xt$live, type="p", col=3)
+
+lines(spline(xt$time, xt$live), type="l")
+xt$deathFreq<-0;
+i=0;
+for(i in c(2:length(xt$deathFreq)))
+{
+print(i);
+xt$deathFreq[i]=xt$death[i]-xt$death[i-1];
+}
+
+
+
+//plot(c(0,300),c(0,0.03), type="n")
+test<-rlnorm(10000, 3.54353, 0.629004821)
+
+//lines(density(test), col=2)
+
+
+###for siblings correlation.
+
+xt<-read.table("divSibling.txt", header=T, sep="\t")
+cor(xt$sibling1, xt$sibling2);
+cor(xt$sibling1, xt$sibling2, method="spearman");
+
+#####for mother daughter cells.
+xt<-read.table("divMD.txt", header=T, sep="\t")
+cor(xt$sibling1, xt$mother);
+
+cor(xt$sibling1, xt$mother, method="spearman");
+plot(c(0,50), c(0,50), type="p")
+points(xt[,3], xt[,2], pch=2, col=2)
+dim(xt)
+
+par(op);

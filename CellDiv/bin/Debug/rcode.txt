@@ -1,0 +1,87 @@
+op<-par(mfrow = c(2, 2), # 2 x 2 pictures on one plot
+          pty = "s")       # square plotting region,
+                           # independent of device size
+
+###
+jpeg("death.jpg")
+xt<-read.table("div.txt", header=T, sep="\t")
+
+plot(c(0,150),c(0,3000), type="n", main="Total Dead Cell", xlab="time (hrs)", ylab="cell numbers")
+
+lines(xt$time, xt$death, type="p", col=2)
+#mtext(paste("totle number of cells:", length(xt[,2]), ""));
+
+lines(spline(xt$time, xt$death), type="l", col=3)
+dev.off();
+
+jpeg("live.jpg")
+plot(c(0,180),c(0,1500), type="n", main="Total Live Cell", xlab="time (hrs)", ylab="cell numbers")
+points(xt$time, xt$live, type="p", col=2)
+
+lines(spline(xt$time, xt$live), type="l", col=3)
+dev.off();
+
+xt$deathFreq<-0;
+i=0;
+for(i in c(2:length(xt$deathFreq)))
+{
+print(i);
+xt$deathFreq[i]=xt$death[i]-xt$death[i-1];
+}
+
+
+
+#plot(c(0,300),c(0,0.03), type="n")
+test<-rlnorm(10000, 3.54353, 0.629004821)
+
+#lines(density(test), col=2)
+
+
+###for siblings correlation.
+
+xt<-read.table("divSibling.txt", header=T, sep="\t")
+cor(xt$sibling1, xt$sibling2);
+cor(xt$sibling1, xt$sibling2, method="spearman");
+plot(c(0,20), c(0,20), type="p", main="Sibling1 vs Sibling 2\nsigma_d=0.20", xlab="Sibling 1", ylab="Sibling 2")
+points(xt[,3], xt[,2], pch=1, col=2)
+legend(10,50, c("Pearson r=0.185", "Spearman r=0.252"), text.col=3);
+
+
+#####for mother daughter cells.
+xt<-read.table("divMD.txt", header=T, sep="\t")
+cor(xt$sibling1, xt$mother);
+
+cor(xt$sibling1, xt$mother, method="spearman");
+plot(c(0,20), c(0,20), type="p", main="Mother vs Daughter\nsigma_MD=0.1", xlab="Daughter Cell", ylab="Mother Cells")
+points(xt[,3], xt[,2], pch=1, col=2)
+legend(10,10, c("Pearson r=0.629", "Spearman r=0.832"), text.col=3);
+dim(xt)
+
+par(op);
+
+jpeg("byGen1.jpg")
+xt<-read.table("divByGen.txt", header=T, sep="\t")
+plot(c(0,150), c(0,450), type="p", main="by Generation", xlab="time", ylab="cell count")
+lines(spline(xt[,1], xt[,2]), pch=1, col=2)
+lines(spline(xt[,1], xt[,3]), pch=2, col=3)
+lines(spline(xt[,1], xt[,4]), pch=3, col=4)
+lines(spline(xt[,1], xt[,5]), pch=4, col=5)
+lines(spline(xt[,1], xt[,6]), pch=5, col=6)
+lines(spline(xt[,1], xt[,7]), pch=6, col=7)
+lines(spline(xt[,1], xt[,8]), pch=7, col=8)
+lines(spline(xt[,1], xt[,9]), pch=8, col=9)
+lines(spline(xt[,1], xt[,10]), pch=9, col=10)
+lines(spline(xt[,1], xt[,11]), pch=10, col=11)
+#points(xt[,1], xt[,8], pch=7, col=8)
+
+legend(115,400, c("gen 1", "gen 2", "gen 3", "gen 4", "gen 5" ,"gen 6"), text.col=c(2,3,4,5,6,7), lty=1, col= c(2,3,4,5,6,7));
+dev.off();
+
+
+plot(c(0,12), c(0, 0.8), main="Progeny Destiny", type="n");
+lines(density(rtnorm(15000, 0, 1.0, 0,15)), col=3)
+lines(density(rtnorm(15000, 1, 1.0, 0,15)), col=4)
+lines(density(rtnorm(15000, 2.5, 1.0, 0,15)), col=5)
+lines(density(rtnorm(15000, 4.5, 1.0, 0,15)), col=6)
+lines(density(rtnorm(15000, 8.5, 1.0, 0,15)), col=8)
+legend(4,0.8, c("tnorm(0, 1)", "tnorm(1, 1)", "tnorm(2.5, 1)", "tnorm(4.5, 1)", "tnorm(8.5, 1)"), text.col=c(3,4,5,6,8), lty=1, col= c(3,4,5,6,8));
