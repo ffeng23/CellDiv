@@ -308,7 +308,7 @@ namespace CellDiv
             }
 
 
-            //88888888888888888888888888888888888888888888888888
+            
             //calculate the SubseqGenDiv logLikelihood
             for (int i = 0; i < subSequentGenDivTime.Count; i++)
             {
